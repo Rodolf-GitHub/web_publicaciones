@@ -1,17 +1,12 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import ImageCarousel from '../components/ImageCarousel.vue'
+</script>
 
 <template>
   <main class="min-h-screen w-full flex flex-col md:flex-row">
-    <!-- Sección de la imagen -->
+    <!-- Sección del carrusel -->
     <div class="w-full h-[40vh] md:h-screen md:w-1/2 relative overflow-hidden">
-      <img
-        src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80"
-        alt="Modelo"
-        class="w-full h-full object-cover object-center"
-      />
-      <div
-        class="absolute inset-0 bg-gradient-to-b md:bg-gradient-to-r from-transparent to-black/20"
-      ></div>
+      <ImageCarousel />
     </div>
 
     <!-- Sección del contenido -->
@@ -50,7 +45,7 @@
           </p>
 
           <a
-            href="https://wa.me/+5351923558?text=Hola%20hermosa,%20me%20encantaría%20conocerte%20y%20compartir%20momentos%20especiales%20contigo.%20¿Podemos%20chatear?"
+            href="https://wa.link/m2qjnd"
             target="_blank"
             class="inline-block w-full sm:w-auto bg-gradient-to-r from-pink-400 to-purple-400 hover:from-pink-500 hover:to-purple-500 text-white px-6 sm:px-8 md:px-10 py-3 sm:py-4 rounded-full text-base sm:text-lg md:text-xl font-bold transition-all duration-300 hover:shadow-xl shadow-lg hover:scale-[1.02]"
           >
