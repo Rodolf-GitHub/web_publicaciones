@@ -1,20 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+// Importamos las imágenes correctamente
+const images = ref([
+  new URL('../assets/images/img1.jpg', import.meta.url).href,
+  new URL('../assets/images/img2.jpg', import.meta.url).href,
+  new URL('../assets/images/img3.jpg', import.meta.url).href,
+  new URL('../assets/images/img4.jpg', import.meta.url).href,
+  new URL('../assets/images/img5.jpg', import.meta.url).href,
+  new URL('../assets/images/img6.jpg', import.meta.url).href,
+  new URL('../assets/images/img7.jpg', import.meta.url).href,
+  new URL('../assets/images/img8.jpg', import.meta.url).href,
+  new URL('../assets/images/img9.jpg', import.meta.url).href,
+  new URL('../assets/images/img10.jpg', import.meta.url).href,
+  new URL('../assets/images/img11.jpg', import.meta.url).href,
+])
 
 const currentIndex = ref(0)
-const images = ref([
-  '/src/assets/images/img1.jpg',
-  '/src/assets/images/img2.jpg',
-  '/src/assets/images/img3.jpg',
-  '/src/assets/images/img4.jpg',
-  '/src/assets/images/img5.jpg',
-  '/src/assets/images/img6.jpg',
-  '/src/assets/images/img7.jpg',
-  '/src/assets/images/img8.jpg',
-  '/src/assets/images/img9.jpg',
-  '/src/assets/images/img10.jpg',
-  '/src/assets/images/img11.jpg',
-])
 
 const next = () => {
   currentIndex.value = (currentIndex.value + 1) % images.value.length
@@ -24,9 +26,18 @@ const prev = () => {
   currentIndex.value = currentIndex.value === 0 ? images.value.length - 1 : currentIndex.value - 1
 }
 
-// Auto-play
+let interval: number
+
+// Auto-play con limpieza
 onMounted(() => {
-  setInterval(next, 5000) // Cambia imagen cada 5 segundos
+  interval = setInterval(next, 5000) // Cambia imagen cada 5 segundos
+})
+
+// Limpiar el intervalo cuando el componente se desmonta
+onUnmounted(() => {
+  if (interval) {
+    clearInterval(interval)
+  }
 })
 </script>
 
@@ -42,6 +53,7 @@ onMounted(() => {
           :alt="`Imagen ${index + 1}`"
           class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           :class="{ 'opacity-0': currentIndex !== index }"
+          loading="lazy"
         />
       </transition-group>
       <div
